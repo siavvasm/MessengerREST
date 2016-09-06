@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.miltos.tutorials.messenger.model.Message;
@@ -28,8 +29,8 @@ public class ProfileResource {
 	private ProfileService profileService = new ProfileService();
 
 	@GET
-	public List<Profile> getProfiles(){
-		System.out.println("Get all profiles!!");
+	public List<Profile> getProfiles(@QueryParam("year") int year){
+		System.out.println("The year is : " + year);
 		return profileService.getAllProfiles();
 	}
 	

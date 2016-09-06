@@ -1,6 +1,7 @@
 package com.miltos.tutorials.messenger.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,28 @@ public class MessageService {
 		messages.put(1L, new Message(0,"Hi !!", "John Doe"));
 		messages.put(2L, new Message(0,"Hi !!", "John Doe"));
 	}
+	
+	/*
+	 * Filtering methods
+	 */
+	public List<Message> getAllMessagesForYear(int year){
+		List<Message> messagesForYear = new ArrayList<>();
+		Calendar cal = Calendar.getInstance();
+		for (Message message : messages.values()){
+			cal.setTime(message.getCreated());
+			if (cal.get(Calendar.YEAR) == year){
+				messagesForYear.add(message);
+			}
+		}
+		return messagesForYear;
+	}
+	
+	public List<Message> getAllMessagesPaginated(int start, int size){
+		ArrayList<Message> list = new ArrayList<>(messages.values());
+		if(start + size > list.size()) return new ArrayList<Message>();
+		return list.subList(start, start + size);
+	}
+	
 	
 	/*
 	 * Returns all the messages from the DatabaseClass
