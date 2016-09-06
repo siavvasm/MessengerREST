@@ -8,6 +8,7 @@ package com.miltos.tutorials.messenger.resources;
 
 import java.util.List;
 
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
@@ -22,11 +23,13 @@ import javax.ws.rs.core.MediaType;
 import com.miltos.tutorials.messenger.service.MessageService;
 import com.miltos.tutorials.messenger.model.Message;
 
+import com.miltos.tutorials.messenger.resources.beans.MessageFilterBean;;
+
 @Path("/messages")
 public class MessageResource {
 	
 	MessageService messageService = new MessageService();
-	
+/*	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessages(@QueryParam("year") int year,
@@ -39,6 +42,25 @@ public class MessageResource {
 		
 		if (start > 0 && size != 0){
 			return messageService.getAllMessagesPaginated(start, size);
+		}
+		return messageService.getAllMessages();
+		//return "<messages><message><id>1</id><author>John</author><text>Hi There</text></message></messages>";
+	}
+*/	
+	/*
+	 * An alternative way to pass the query parameters. We encapsulate them in a class
+	 * and we use the Bean annotation to automatically access them.
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Message> getMessages(@BeanParam MessageFilterBean filterbean){
+		System.out.println("The year is : " + filterbean.getYear());
+		if (filterbean.getYear() > 0){
+			return messageService.getAllMessagesForYear(filterbean.getYear());
+		}
+		
+		if (filterbean.getStart() > 0 && filterbean.getSize() != 0){
+			return messageService.getAllMessagesPaginated(filterbean.getStart(), filterbean.getSize());
 		}
 		return messageService.getAllMessages();
 		//return "<messages><message><id>1</id><author>John</author><text>Hi There</text></message></messages>";
