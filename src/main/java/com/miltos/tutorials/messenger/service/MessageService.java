@@ -12,7 +12,8 @@ import com.miltos.tutorials.messenger.model.Message;
 
 public class MessageService {
 	
-	//This messages objec points to the original messages object found in the DatabaseClass
+	//This messages object points to the original messages object found in the DatabaseClass
+	//This object is not a copy of the original object. It is a pointer that points to the same object.
 	private  Map<Long, Message> messages = DatabaseClass.getMessages();
 	
 	//Initially put some stub messages to the static Database

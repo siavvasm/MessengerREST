@@ -14,7 +14,7 @@ public class Profile {
 	private Date created;
 	
 	public Profile(){
-		
+		//Nothing to do there ...
 	}
 	
 	public Profile(long id, String profileName, String firstName,
@@ -24,7 +24,6 @@ public class Profile {
 		this.profileName = profileName;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.created = new Date();
 	}
 	public long getId() {
 		return id;
