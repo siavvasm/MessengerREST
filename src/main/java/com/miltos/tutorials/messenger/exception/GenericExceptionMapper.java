@@ -7,6 +7,12 @@ import javax.ws.rs.ext.Provider;
 
 import com.miltos.tutorials.messenger.model.ErrorMessage;
 
+/**
+ * This class constitutes a generic exception handler. If an exception is thrown, a custom
+ * response object is instantiated and sent back to the client. In this way, a JSON or an 
+ * XML message is sent, instead of sending the verbose error message created automatically
+ * by JVM when an exception occurs.
+ */
 @Provider
 public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
 

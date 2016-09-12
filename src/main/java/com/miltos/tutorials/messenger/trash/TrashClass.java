@@ -19,6 +19,10 @@ import com.auth0.jwt.JWTVerifyException;
 
 import java.util.HashMap;
 
+/**
+ * This class is responsible for validating a specific user by sending the appropriate request to 
+ * the validateUser web service of the S-CASE Control Tower (CT) API.
+ */
 public class TrashClass 
 {
 	private static String baseURL = "http://app.scasefp7.com:3000/api/proxy/auth";
@@ -29,14 +33,14 @@ public class TrashClass
     
 	public static void main( String[] args ) throws JSONException, InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, SignatureException, IOException, JWTVerifyException
     {
+		//Create the signature of the application
     	HashMap<String, Object> claims = new HashMap<String, Object>();
     	String scase_token = "YzZFdPtaHv45Qip_0Eyn2wK09KAH4iKKQRoazy88iqSDoaI"; //The scase_token of the application
-        
-    	claims.put("token", scase_token);
-        
-    	//Create the signature of the application
+        claims.put("token", scase_token);
+    	
     	String signature = signer.sign(claims);
     	
+    	//TODO: Remove this print
     	System.out.println("The signature is :" + signature);
         
     	//Create a client to communicate with the API
@@ -51,7 +55,7 @@ public class TrashClass
         claims.put("token", scase_token);
         String userSignature = signer2.sign(claims2);
         
-        
+        //TODO: Remove this print
         System.out.println("The signature of the user is :" + userSignature);
         
         try {

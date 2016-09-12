@@ -11,9 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class is responsible for manipulating the comments stored in the application database.
+ * It provides methods that allow a new comment to be added and an existing comment to be 
+ * retrieved, updated and deleted. It also allows the retrieval of all the comments 
+ * stored in the database. 
+ */
+
 public class CommentService {
 	
+	//Get the messages array from the DatabaseClass
 	private Map<Long, Message> messages = DatabaseClass.getMessages();
+	
+	/*
+	 * Methods provided by the CommentService class for manipulating the comments.
+	 */
 	
 	public List<Comment> getAllComments(long messageId) {
 		Map<Long, Comment> comments = messages.get(messageId).getComments();

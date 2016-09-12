@@ -16,6 +16,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
 
+/**
+ * Useless class. Just for testing purposes.
+ */
 
 @Path("/injectdemo")
 @Produces(MediaType.TEXT_PLAIN)
@@ -35,6 +38,7 @@ public class InjectDemoResource {
 	public String getParamsUsingContext(@Context UriInfo uriInfo, @Context HttpHeaders headers){
 		String path = uriInfo.getAbsolutePath().toString();
 		String cookies = headers.getHeaderString("customHeader");
+		
 		/*MultivaluedMap<String,String> headersMap = headers.getRequestHeaders();
 		List<String> list = null;
 		for (int i = 0; i < headersMap.size() ; i ++ ){

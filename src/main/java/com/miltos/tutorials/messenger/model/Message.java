@@ -20,7 +20,7 @@ public class Message {
 	private List<Link> links = new ArrayList<Link>();
 
 	public Message(){
-		//Empty or no-app constructor
+		//Empty constructor
 		//Needed by the parsers
 	}
 	public Message(long id, String message, String author) {
@@ -33,24 +33,31 @@ public class Message {
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getMessage() {
 		return message;
 	}
+	
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
 	public String getAuthor() {
 		return author;
 	}
+	
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	
 	public Date getCreated() {
 		return created;
 	}
+	
 	public void setCreated(Date created) {
 		this.created = created;
 	}
@@ -67,6 +74,7 @@ public class Message {
 	public Map<Long, Comment> getComments() {
 		return comments;
 	}
+	
 	public void setComments(Map<Long, Comment> comments) {
 		this.comments = comments;
 	}

@@ -11,20 +11,27 @@ import javax.ws.rs.client.ClientBuilder;
 import com.miltos.tutorials.messenger.database.DatabaseClass;
 import com.miltos.tutorials.messenger.model.Message;
 
+/**
+ * This class is responsible for manipulating the messages stored in the application database.
+ * It provides methods that allow a new message to be added and an existing message to be 
+ * retrieved, updated and deleted. It also allows the retrieval of all the messages 
+ * stored in the database. 
+ */
 public class MessageService {
 	
 	//This messages object points to the original messages object found in the DatabaseClass
 	//This object is not a copy of the original object. It is a pointer that points to the same object.
 	private  Map<Long, Message> messages = DatabaseClass.getMessages();
 	
-	//Initially put some stub messages to the static Database
+	//Add some fake messages to the database for testing purposes
+	//TODO: To be removed.
 	public MessageService(){
 		messages.put(1L, new Message(0,"Hi !!", "John Doe"));
 		messages.put(2L, new Message(0,"Hi !!", "John Doe"));
 	}
 	
 	/*
-	 * Filtering methods
+	 * A method used to retrieve messages filtered by their creation year.
 	 */
 	public List<Message> getAllMessagesForYear(int year){
 		List<Message> messagesForYear = new ArrayList<>();
@@ -38,6 +45,9 @@ public class MessageService {
 		return messagesForYear;
 	}
 	
+	/*
+	 * A method used to retrieve messages filtered by their index.
+	 */
 	public List<Message> getAllMessagesPaginated(int start, int size){
 		ArrayList<Message> list = new ArrayList<>(messages.values());
 		if(start + size > list.size()) return new ArrayList<Message>();
@@ -46,8 +56,9 @@ public class MessageService {
 	
 	
 	/*
-	 * Returns all the messages from the DatabaseClass
+	 * Methods provided by the MessagesService class for the manipulation of messages.
 	 */
+	
 	public List<Message> getAllMessages(){
 		return new ArrayList<Message>(messages.values());
 	}
